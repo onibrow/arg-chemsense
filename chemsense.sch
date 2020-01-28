@@ -5700,11 +5700,8 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="SUPPLY2" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
 <part name="SUPPLY4" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
-<part name="R1" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="R-US_" device="0603" package3d_urn="urn:adsk.eagle:package:14850803/1"/>
-<part name="SUPPLY6" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
 <part name="R2" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="R-US_" device="0603" package3d_urn="urn:adsk.eagle:package:14850803/1" value="10k"/>
 <part name="R3" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="R-US_" device="0603" package3d_urn="urn:adsk.eagle:package:14850803/1" value="10k"/>
-<part name="U$3" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="5V" device=""/>
 <part name="U$4" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="5V" device=""/>
 <part name="U$5" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="5V" device=""/>
 <part name="C1" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CAP" device="0603-CAP" package3d_urn="urn:adsk.eagle:package:14850677/1"/>
@@ -5713,6 +5710,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="J2" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1" value="REF_GND"/>
 <part name="SUPPLY7" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
 <part name="J3" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1" value="SENSORS"/>
+<part name="J4" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1" value="I2C"/>
+<part name="J5" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1" value="GND"/>
+<part name="SUPPLY6" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="GND" device=""/>
+<part name="J6" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1" value="VDD"/>
+<part name="U$3" library="scono" library_urn="urn:adsk.eagle:library:14850048" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5752,13 +5754,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="SUPPLY4" gate="GND" x="101.6" y="147.32" smashed="yes" rot="R90">
 <attribute name="VALUE" x="104.14" y="146.05" size="1.016" layer="96" rot="R90"/>
 </instance>
-<instance part="R1" gate="G$1" x="121.92" y="167.64" smashed="yes" rot="R90">
-<attribute name="NAME" x="120.65" y="162.56" size="1.016" layer="95" rot="R90"/>
-<attribute name="VALUE" x="123.19" y="162.56" size="1.016" layer="96" rot="R90" align="top-left"/>
-</instance>
-<instance part="SUPPLY6" gate="GND" x="101.6" y="162.56" smashed="yes" rot="R180">
-<attribute name="VALUE" x="102.87" y="165.1" size="1.016" layer="96" rot="R180"/>
-</instance>
 <instance part="R2" gate="G$1" x="142.24" y="167.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="140.97" y="162.56" size="1.016" layer="95" rot="R90"/>
 <attribute name="VALUE" x="143.51" y="162.56" size="1.016" layer="96" rot="R90" align="top-left"/>
@@ -5766,9 +5761,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="R3" gate="G$1" x="139.7" y="167.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="138.43" y="162.56" size="1.016" layer="95" rot="R90"/>
 <attribute name="VALUE" x="140.97" y="162.56" size="1.016" layer="96" rot="R90" align="top-left"/>
-</instance>
-<instance part="U$3" gate="G$1" x="121.92" y="170.18" smashed="yes">
-<attribute name="VALUE" x="120.65" y="173.99" size="1.778" layer="96"/>
 </instance>
 <instance part="U$4" gate="G$1" x="139.7" y="170.18" smashed="yes">
 <attribute name="VALUE" x="138.43" y="173.99" size="1.778" layer="96"/>
@@ -5797,6 +5789,24 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <attribute name="VALUE" x="160.02" y="43.434" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="160.02" y="58.928" size="1.778" layer="95" font="vector"/>
 </instance>
+<instance part="J4" gate="G$1" x="96.52" y="83.82" smashed="yes">
+<attribute name="VALUE" x="93.98" y="78.994" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="93.98" y="89.408" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J5" gate="G$1" x="50.8" y="124.46" smashed="yes">
+<attribute name="VALUE" x="48.26" y="119.634" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="48.26" y="130.048" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="SUPPLY6" gate="GND" x="60.96" y="127" smashed="yes" rot="R90">
+<attribute name="VALUE" x="63.5" y="125.73" size="1.016" layer="96" rot="R90"/>
+</instance>
+<instance part="J6" gate="G$1" x="30.48" y="124.46" smashed="yes">
+<attribute name="VALUE" x="27.94" y="119.634" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="27.94" y="130.048" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="U$3" gate="G$1" x="38.1" y="127" smashed="yes" rot="R270">
+<attribute name="VALUE" x="41.91" y="128.27" size="1.778" layer="96" rot="R270"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -5811,10 +5821,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="U$2" gate="G$1" pin="5V"/>
 </segment>
 <segment>
-<pinref part="R1" gate="G$1" pin="2"/>
-<pinref part="U$3" gate="G$1" pin="5V"/>
-</segment>
-<segment>
 <pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="U$4" gate="G$1" pin="5V"/>
 </segment>
@@ -5825,6 +5831,13 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="U$6" gate="G$1" pin="5V"/>
+</segment>
+<segment>
+<pinref part="J6" gate="G$1" pin="2"/>
+<pinref part="U$3" gate="G$1" pin="5V"/>
+<pinref part="J6" gate="G$1" pin="1"/>
+<wire x1="38.1" y1="127" x2="38.1" y2="124.46" width="0.1524" layer="91"/>
+<junction x="38.1" y="127"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -5845,18 +5858,19 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U1" gate="A" pin="CH4-"/>
-<wire x1="101.6" y1="160.02" x2="99.06" y2="160.02" width="0.1524" layer="91"/>
-<label x="101.6" y="160.02" size="1.778" layer="95"/>
-<pinref part="SUPPLY6" gate="GND" pin="GND"/>
-</segment>
-<segment>
 <pinref part="C1" gate="G$1" pin="1"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 </segment>
 <segment>
 <pinref part="J2" gate="G$1" pin="2"/>
 <pinref part="SUPPLY7" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="J5" gate="G$1" pin="2"/>
+<pinref part="SUPPLY6" gate="GND" pin="GND"/>
+<pinref part="J5" gate="G$1" pin="1"/>
+<wire x1="58.42" y1="127" x2="58.42" y2="124.46" width="0.1524" layer="91"/>
+<junction x="58.42" y="127"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -5872,6 +5886,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="43.18" y1="144.78" x2="40.64" y2="144.78" width="0.1524" layer="91"/>
 <label x="38.1" y="142.24" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="J4" gate="G$1" pin="2"/>
+<wire x1="109.22" y1="86.36" x2="104.14" y2="86.36" width="0.1524" layer="91"/>
+<label x="106.68" y="86.36" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -5886,59 +5905,10 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="99.06" y1="144.78" x2="101.6" y2="144.78" width="0.1524" layer="91"/>
 <label x="99.06" y="142.24" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="CH1+" class="0">
 <segment>
-<pinref part="U1" gate="A" pin="CH1+"/>
-<wire x1="43.18" y1="160.02" x2="40.64" y2="160.02" width="0.1524" layer="91"/>
-<label x="35.56" y="160.02" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CH1-" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH1-"/>
-<wire x1="43.18" y1="157.48" x2="40.64" y2="157.48" width="0.1524" layer="91"/>
-<label x="35.56" y="157.48" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CH2+" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH2+"/>
-<wire x1="43.18" y1="154.94" x2="40.64" y2="154.94" width="0.1524" layer="91"/>
-<label x="35.56" y="154.94" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CH2-" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH2-"/>
-<wire x1="43.18" y1="152.4" x2="40.64" y2="152.4" width="0.1524" layer="91"/>
-<label x="35.56" y="152.4" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CH3+" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH3+"/>
-<wire x1="101.6" y1="152.4" x2="99.06" y2="152.4" width="0.1524" layer="91"/>
-<label x="101.6" y="152.4" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="CH3-" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH3-"/>
-<wire x1="99.06" y1="154.94" x2="101.6" y2="154.94" width="0.1524" layer="91"/>
-<label x="101.6" y="154.94" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="THERM" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="CH4+"/>
-<wire x1="101.6" y1="157.48" x2="99.06" y2="157.48" width="0.1524" layer="91"/>
-<label x="101.6" y="157.48" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="121.92" y1="162.56" x2="121.92" y2="157.48" width="0.1524" layer="91"/>
-<label x="124.46" y="160.02" size="1.778" layer="95"/>
+<pinref part="J4" gate="G$1" pin="1"/>
+<wire x1="109.22" y1="83.82" x2="104.14" y2="83.82" width="0.1524" layer="91"/>
+<label x="106.68" y="83.82" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="REF_ELEC" class="0">
@@ -5947,29 +5917,130 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="104.14" y1="66.04" x2="109.22" y2="66.04" width="0.1524" layer="91"/>
 <label x="109.22" y="66.04" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="N$1" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="CH1-"/>
+<wire x1="43.18" y1="157.48" x2="40.64" y2="157.48" width="0.1524" layer="91"/>
+<label x="35.56" y="157.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="CH2-"/>
+<wire x1="43.18" y1="152.4" x2="40.64" y2="152.4" width="0.1524" layer="91"/>
+<label x="35.56" y="152.4" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="CH3-"/>
+<wire x1="99.06" y1="154.94" x2="101.6" y2="154.94" width="0.1524" layer="91"/>
+<label x="101.6" y="154.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="29"/>
+<pinref part="J1" gate="G$1" pin="28"/>
+<wire x1="45.72" y1="35.56" x2="45.72" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="27"/>
+<wire x1="45.72" y1="38.1" x2="45.72" y2="40.64" width="0.1524" layer="91"/>
+<junction x="45.72" y="38.1"/>
+<pinref part="J1" gate="G$1" pin="26"/>
+<wire x1="45.72" y1="40.64" x2="45.72" y2="43.18" width="0.1524" layer="91"/>
+<junction x="45.72" y="40.64"/>
+<label x="50.8" y="45.72" size="1.778" layer="95"/>
+<pinref part="J1" gate="G$1" pin="25"/>
+<wire x1="45.72" y1="43.18" x2="45.72" y2="45.72" width="0.1524" layer="91"/>
+<junction x="45.72" y="43.18"/>
+<wire x1="45.72" y1="45.72" x2="50.8" y2="45.72" width="0.1524" layer="91"/>
+<junction x="45.72" y="45.72"/>
+</segment>
 <segment>
 <pinref part="J3" gate="G$1" pin="4"/>
 <wire x1="170.18" y1="55.88" x2="172.72" y2="55.88" width="0.1524" layer="91"/>
+<label x="172.72" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$2" class="0">
+<net name="NH4" class="0">
 <segment>
-<pinref part="J3" gate="G$1" pin="3"/>
-<wire x1="172.72" y1="53.34" x2="170.18" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="8"/>
+<pinref part="J1" gate="G$1" pin="7"/>
+<wire x1="45.72" y1="88.9" x2="45.72" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="4"/>
+<wire x1="50.8" y1="99.06" x2="45.72" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="5"/>
+<wire x1="45.72" y1="96.52" x2="45.72" y2="99.06" width="0.1524" layer="91"/>
+<junction x="45.72" y="99.06"/>
+<pinref part="J1" gate="G$1" pin="6"/>
+<wire x1="45.72" y1="96.52" x2="45.72" y2="93.98" width="0.1524" layer="91"/>
+<junction x="45.72" y="96.52"/>
+<wire x1="45.72" y1="91.44" x2="45.72" y2="93.98" width="0.1524" layer="91"/>
+<junction x="45.72" y="91.44"/>
+<junction x="45.72" y="93.98"/>
+<label x="50.8" y="99.06" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="J3" gate="G$1" pin="2"/>
-<wire x1="172.72" y1="50.8" x2="170.18" y2="50.8" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$4" class="0">
 <segment>
 <pinref part="J3" gate="G$1" pin="1"/>
 <wire x1="172.72" y1="48.26" x2="170.18" y2="48.26" width="0.1524" layer="91"/>
+<label x="172.72" y="48.26" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="CH1+"/>
+<wire x1="43.18" y1="160.02" x2="40.64" y2="160.02" width="0.1524" layer="91"/>
+<label x="35.56" y="160.02" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="NA" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="15"/>
+<pinref part="J1" gate="G$1" pin="14"/>
+<wire x1="45.72" y1="71.12" x2="45.72" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="13"/>
+<wire x1="45.72" y1="73.66" x2="45.72" y2="76.2" width="0.1524" layer="91"/>
+<junction x="45.72" y="73.66"/>
+<pinref part="J1" gate="G$1" pin="11"/>
+<pinref part="J1" gate="G$1" pin="12"/>
+<wire x1="45.72" y1="81.28" x2="45.72" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="76.2" x2="45.72" y2="78.74" width="0.1524" layer="91"/>
+<junction x="45.72" y="76.2"/>
+<junction x="45.72" y="78.74"/>
+<wire x1="45.72" y1="78.74" x2="45.72" y2="81.28" width="0.1524" layer="91"/>
+<junction x="45.72" y="81.28"/>
+<wire x1="45.72" y1="81.28" x2="50.8" y2="81.28" width="0.1524" layer="91"/>
+<label x="50.8" y="81.28" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="2"/>
+<wire x1="172.72" y1="50.8" x2="170.18" y2="50.8" width="0.1524" layer="91"/>
+<label x="172.72" y="50.8" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="CH2+"/>
+<wire x1="43.18" y1="154.94" x2="40.64" y2="154.94" width="0.1524" layer="91"/>
+<label x="35.56" y="154.94" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="K" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="18"/>
+<pinref part="J1" gate="G$1" pin="19"/>
+<wire x1="45.72" y1="63.5" x2="45.72" y2="60.96" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="20"/>
+<wire x1="45.72" y1="60.96" x2="45.72" y2="58.42" width="0.1524" layer="91"/>
+<junction x="45.72" y="60.96"/>
+<pinref part="J1" gate="G$1" pin="21"/>
+<wire x1="45.72" y1="58.42" x2="45.72" y2="55.88" width="0.1524" layer="91"/>
+<junction x="45.72" y="58.42"/>
+<pinref part="J1" gate="G$1" pin="22"/>
+<wire x1="45.72" y1="55.88" x2="45.72" y2="53.34" width="0.1524" layer="91"/>
+<junction x="45.72" y="55.88"/>
+<wire x1="45.72" y1="63.5" x2="50.8" y2="63.5" width="0.1524" layer="91"/>
+<junction x="45.72" y="63.5"/>
+<label x="50.8" y="63.5" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="3"/>
+<wire x1="172.72" y1="53.34" x2="170.18" y2="53.34" width="0.1524" layer="91"/>
+<label x="172.72" y="53.34" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U1" gate="A" pin="CH3+"/>
+<wire x1="101.6" y1="152.4" x2="99.06" y2="152.4" width="0.1524" layer="91"/>
+<label x="101.6" y="152.4" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

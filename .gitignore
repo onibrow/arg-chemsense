@@ -27,6 +27,7 @@ scono.l#*
 #ignore gerber files because you can generate them with the cam jobs.
 #therefore, no need to version control them
 
+*.pro
 *.bor
 *.cmp
 *.crc
