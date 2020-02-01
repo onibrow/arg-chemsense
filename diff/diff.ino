@@ -13,28 +13,30 @@
 MCP342x MCP(0);
 
 long Voltage[4];
-char incomingByte = 0;
+String buff = String("deadbuffdead");
 int num_samples = 1;
 
 void setup() {
   MCP.begin(0);
-  MCP.setConfiguration(CH1, RESOLUTION_16_BITS, CONTINUOUS_MODE, PGA_X1); // Channel 1, 16 bits resolution, one-shot mode, amplifier gain = 1
+  MCP.setConfiguration(CH1, RESOLUTION_16_BITS, ONE_SHOT_MODE, PGA_X1); // Channel 1, 16 bits resolution, one-shot mode, amplifier gain = 1
   Serial.begin(115200); // start serial for output
-  Serial.print("MCP3424 Configuration Complete!\n");
+  //  Serial.print("MCP3424 Configuration Complete!\n");
 }
 
 void loop() {
-  for (int i = 1; i <= 4; i++) {
-    MCP.setConfiguration(i, RESOLUTION_16_BITS, CONTINUOUS_MODE, PGA_X1);
-    long cumsum_voltage = 0;
-    for (int j = 0; j < num_samples; j++) {
-      cumsum_voltage += MCP.measure();
-    }
-    Voltage[i - 1] = -1 * cumsum_voltage / num_samples;
-  }
   if (Serial.available()) {
-    incomingByte = Serial.read();
-    if (incomingByte == 0x64) {
+    buff = Serial.readStringUntil('\n');
+//    Serial.println(buff);
+    for (int i = 1; i <= 4; i++) {
+      MCP.setConfiguration(i, RESOLUTION_16_BITS, ONE_SHOT_MODE, PGA_X1);
+      long cumsum_voltage = 0;
+      for (int j = 0; j < num_samples; j++) {
+        MCP.newConversion();
+        cumsum_voltage += MCP.measure();
+      }
+      Voltage[i - 1] = -1 * cumsum_voltage / num_samples;
+    }
+    if (buff.equals("deaddead")) {
       Serial.print(Voltage[0]); Serial.print(",");
       Serial.print(Voltage[1]); Serial.print(",");
       Serial.print(Voltage[2]); Serial.print(",");

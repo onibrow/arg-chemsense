@@ -3,9 +3,13 @@ import serial
 import time
 import sys
 import glob
+import datetime
+from pytz import timezone
+import readline
 
 BAUD_RATE = 115200
-TIMEOUT = 1
+TIMEOUT = 2
+STOPBITS = serial.STOPBITS_ONE
 
 def serial_ports():
     """Lists serial ports
@@ -40,20 +44,19 @@ def serial_ports():
     return result
 
 def select_serial_port():
-  ports = serial_ports()
-  if ports:
-    print("Available serial ports:")
-    for (i, p) in enumerate(ports):
-      print("%d) %s" % (i + 1, p))
-  else:
-    print("No ports available. Check serial connection and try again.")
-    print("Exiting...")
-    quit()
-  selection = input("Select the port to use: ")
-
-  # Note: seems like timeout of 1 doesn't work
-  ser = serial.Serial(ports[int(selection) - 1], BAUD_RATE, timeout = TIMEOUT)
-  return ser
+    ports = serial_ports()
+    if ports:
+        print("Available serial ports:")
+        for (i, p) in enumerate(ports):
+            print("%d) %s" % (i + 1, p))
+    else:
+        print("No ports available. Check serial connection and try again.")
+        print("Exiting...")
+        quit()
+    selection = input("Select the port to use: ")
+    # Note: seems like timeout of 1 doesn't work
+    ser = serial.Serial(ports[int(selection) - 1], BAUD_RATE, timeout = TIMEOUT, stopbits = STOPBITS)
+    return ser
 
 class Diff_ADC():
     def __init__(self, serial_port):
@@ -66,25 +69,41 @@ class Diff_ADC():
             self.ser.write(data)
 
     def serial_request(self):
-        self.serial_write(b'd')
-        serial_data = self.ser.readline()
+        self.serial_write(b'deaddead\n')
+        serial_data = self.ser.readline().decode("utf-8")
         print(serial_data)
+        return serial_data
 
     def serial_close(self):
         self.ser.close()
 
+def rlinput(prompt, prefill=''):
+   readline.set_startup_hook(lambda: readline.insert_text(prefill))
+   try:
+      return input(prompt)
+   finally:
+      readline.set_startup_hook()
+
+
 def main():
     print("Starting Quadchannel Differential ADC Test\n")
+    pst = datetime.datetime.now(tz=datetime.timezone.utc).astimezone(timezone('US/Pacific')).strftime("%m-%d-%Y %H:%M")
     s = select_serial_port()
     mcp = Diff_ADC(s)
-    while(True):
-        try:
-            mcp.serial_request()
-            time.sleep(1)
-        except:
-            print("Keyboard Interrupt")
-            mcp.serial_close()
-            break
+    file_name  = rlinput('\nSave data as: \t', 'Diff_ADC_Data {}.csv'.format(pst))
+
+    print("\nInitializing MCP3424...")
+    time.sleep(3)
+    with open(file_name, 'w') as csvfile:
+        while(True):
+            try:
+                next_line = mcp.serial_request()
+                csvfile.write(next_line)
+            except:
+                print("Keyboard Interrupt")
+                mcp.serial_close()
+                csvfile.close()
+                break
 
 if __name__ == '__main__':
     main()
