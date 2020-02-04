@@ -46,11 +46,11 @@ def serial_ports():
 def select_serial_port():
     ports = serial_ports()
     if ports:
-        print("Available serial ports:")
+        print("\nAvailable serial ports:")
         for (i, p) in enumerate(ports):
             print("%d) %s" % (i + 1, p))
     else:
-        print("No ports available. Check serial connection and try again.")
+        print("\nNo ports available. Check serial connection and try again.")
         print("Exiting...")
         quit()
     selection = input("Select the port to use: ")
@@ -86,24 +86,42 @@ def rlinput(prompt, prefill=''):
 
 
 def main():
-    print("Starting Quadchannel Differential ADC Test\n")
+    print("Starting Quadchannel Differential ADC Data Logger")
     pst = datetime.datetime.now(tz=datetime.timezone.utc).astimezone(timezone('US/Pacific')).strftime("%m-%d-%Y %H:%M")
+    file_name  = rlinput('\nSave data as: \t', 'Diff_ADC_Data {}.csv'.format(pst))
+    try:
+        delay = int(rlinput('\nSample period in ms (min 300): \t', '300')) / 1000.0
+    except ValueError:
+        print("\nSample period must be an integer in milliseconds. Exiting...")
+        quit()
+    ch1 = rlinput("\nChannel 1 Name: \t", 'Na')
+    ch2 = rlinput("Channel 2 Name: \t", 'K')
+    ch3 = rlinput("Channel 3 Name: \t", 'Unused')
+    ch4 = rlinput("Channel 4 Name: \t", 'NH4')
+
     s = select_serial_port()
     mcp = Diff_ADC(s)
-    file_name  = rlinput('\nSave data as: \t', 'Diff_ADC_Data {}.csv'.format(pst))
-
     print("\nInitializing MCP3424...")
     time.sleep(3)
+    input("\nPress Enter to start, Control+C to stop\n")
     with open(file_name, 'w') as csvfile:
+        start_time = time.time()
+        i = 0
+        prev_time = time.time()
+        csvfile.write("{}, {}, {}, {},\n".format(ch1, ch2, ch3, ch4))
         while(True):
-            try:
-                next_line = mcp.serial_request()
-                csvfile.write(next_line)
-            except:
-                print("Keyboard Interrupt")
-                mcp.serial_close()
-                csvfile.close()
-                break
+            if (time.time() - prev_time > delay):
+                prev_time = time.time()
+                try:
+                    next_line = mcp.serial_request()
+                    csvfile.write(next_line)
+                    i += 1
+                except:
+                    mcp.serial_close()
+                    csvfile.close()
+                    print("\nElapsed Time:   {}".format(time.time() - start_time))
+                    print("Num Samples: {}".format(i))
+                    break
 
 if __name__ == '__main__':
     main()
