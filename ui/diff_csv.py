@@ -5,7 +5,6 @@ import sys
 import glob
 import datetime
 from pytz import timezone
-import readline
 
 BAUD_RATE = 115200
 TIMEOUT = 2
@@ -90,7 +89,7 @@ def rlinput(prompt, prefill=''):
 
 def main():
     print("Starting Quadchannel Differential ADC Data Logger")
-    pst = datetime.datetime.now(tz=datetime.timezone.utc).astimezone(timezone('US/Pacific')).strftime("%m-%d-%Y %H:%M")
+    pst = datetime.datetime.now(tz=datetime.timezone.utc).astimezone(timezone('US/Pacific')).strftime("%m-%d-%Y %H_%M")
     # file_name  = rlinput('\nSave data as: \t', 'Diff_ADC_Data {}.csv'.format(pst))
     file_name = "Diff_ADC_Data {}.csv".format(pst)
     """
